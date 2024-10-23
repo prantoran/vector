@@ -1716,8 +1716,22 @@ class VectorNumpy4D(VectorNumpy, Lorentz, Vector4D, FloatArray):  # type: ignore
 
     @property
     def temporal(self) -> TemporalNumpy:
-        """Returns the azimuthal type class for the given ``VectorNumpy4D`` object."""
-        # TODO: Add an example here - see https://github.com/scikit-hep/vector/issues/194
+        """
+        Returns the azimuthal type class for the given ``VectorNumpy4D`` object.
+
+        Example:
+            >>> vec_4d = vector.array(
+            ... [
+            ...     (1.1, 2.1, 3.1, 4.1),
+            ...     (1.2, 2.2, 3.2, 4.2),
+            ...     (1.3, 2.3, 3.3, 4.3),
+            ...     (1.4, 2.4, 3.4, 4.4),
+            ...     (1.5, 2.5, 3.5, 4.5)
+            ... ], dtype=[("x", float), ("y", float), ("z", float), ("t", float)]
+            ... )
+            >>> vec_4d.longitudinal
+            [(4.1,) (4.2,) (4.3,) (4.4,) (4.5,)]
+        """
         return self.view(self._temporal_type)
 
     def _wrap_result(
